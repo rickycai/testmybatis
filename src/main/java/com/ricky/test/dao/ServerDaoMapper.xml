@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ricky.test.dao.ServerDao">
+    <select id="countAll" resultType="int">
+        select count(*) c from server;
+    </select>
+    
+    <select id="selectAll" resultType="com.ricky.test.model.Server">
+        select * from server order by serverName asc
+    </select>
+    
+    <insert id="insert" parameterType="com.ricky.test.model.Server">
+        insert into server(serverName,ipAddress) values(#{serverName},#{ipAddress})
+    </insert>
+    
+    <update id="update" parameterType="com.ricky.test.model.Server">
+        update user set serverName=#{serverName},ipAddress=#{ipAddress} where serverName=#{serverName}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+        delete from user where serverName=#{serverName}
+    </delete>
+    
+    <select id="findByServerName" parameterType="String" resultType="com.ricky.test.model.Server">
+        select * from user where serverName=#{serverName}
+    </select>
+</mapper>
